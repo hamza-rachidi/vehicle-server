@@ -55,7 +55,6 @@ export class VehicleStore {
       throw new Error("unexpected amount of rows returned");
     }
 
-    /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
     const vehicleRow :row = result.rows[0];
 
     return newVehicleFromRow(vehicleRow);
@@ -87,8 +86,8 @@ function newVehicleFromRow(vehicleRow: row): Vehicle {
     vehicleRow.shortcode,
     vehicleRow.battery,
     {
-      longitude: vehicleRow.lat,
-      latitude: vehicleRow.long
+      longitude: vehicleRow.long,
+      latitude: vehicleRow.lat
     },
   )
 }

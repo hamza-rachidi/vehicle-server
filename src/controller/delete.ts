@@ -13,7 +13,7 @@ export class DeleteVehicleController {
    // Parser l'identifiant en nombre
    const id = parseInt(idParam, 10);
    
-   const isDeleted = await this.vehicleStore.deleteVehicle({id : id});
+   await this.vehicleStore.deleteVehicle({id : id});
      
    res.status(204).send();
      

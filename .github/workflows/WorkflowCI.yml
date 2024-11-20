@@ -17,6 +17,18 @@ jobs:
         run: npm run build
       - name: List dist outcome
         run: ls dist/
+      - name: Run Lint
+        run: npm run lint
+      - name: Run Tests
+        run: npm run test
+      - name: Check Node Version
+        run: node --version
+
+
+      
+      
+      
+      
 
   
     
