@@ -11,9 +11,9 @@ export class DeleteVehicleController {
  public async handle(req: Request<Parameters>, res: Response): Promise<void> {
    const idParam = req.params.id; // Extraire l'identifiant du path
    // Parser l'identifiant en nombre
-   const id = parseInt(idParam, 10);
+   const id = parseInt(idParam);
    
-   const isDeleted = await this.vehicleStore.deleteVehicle({id : id});
+   await this.vehicleStore.deleteVehicle({id : id});
      
    res.status(204).send();
      
