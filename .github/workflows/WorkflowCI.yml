@@ -1,0 +1,21 @@
+name: Workflow CI
+on:
+  - push
+jobs:
+  IntegrationContinue :
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses : actions/checkout@v4
+      - name: Node 
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.17.x'
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - name: List dist outcome
+        run: ls dist/
+
+  
+    
