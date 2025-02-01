@@ -1,40 +1,53 @@
-## Vehicle Server Typescript (my test)
 
-### Requirements
+---
 
-- nodejs
-- docker
+## 🚗 Vehicle Server (TypeScript)
 
-### Running the server
+### 📋 Requirements
 
-First start a database server
+Before running the server, ensure you have the following installed:
 
-```bash
-docker run -d -e POSTGRES_USER=vehicle -e POSTGRES_PASSWORD=vehicle -e POSTGRES_DB=vehicle -p 5432:5432 postgis/postgis:16-3.4-alpine
-```
+- **Node.js**
+- **Docker**
+---
 
-Then, in another terminal start the server
+### 🛠️Running the Server
 
-```bash
-node dist/index.js
-```
-
-### Test plan
-
-#### Create a Vehicle
+#### 1️⃣ Start the PostgreSQL Database Server
+To start the PostgreSQL database using Docker, run the following command:
 
 ```bash
-curl -v -XPOST -H "Content-Type: application/json" --data '{"shortcode":"abbaze", "battery": 12, "latitude": 53.43, "longitude": 43.43}' localhost:8080/vehicles | jq .
+npm run start-db
 ```
 
-#### List all Vehicles
+#### 2️⃣ Configure the Server
+Set the `PORT` and `HOST` environment variables to configure the server. For example:
 
 ```bash
-curl -v localhost:8080/vehicles
+export PORT=8080 && export HOST=localhost
 ```
 
-#### Delete a Vehicle
+#### 3️⃣ Start the Server
+Once the database is running and the environment variables are set, start the server with:
 
 ```bash
-curl -v  -XDELETE localhost:8080/vehicles/${vehicle_id}
+npm run start
 ```
+
+#### 4️⃣ Use the CLI for HTTP Requests
+In a separate terminal, you can use the CLI client to send HTTP requests conveniently. Follow the instructions provided in the [CLI Vehicle Client repository](https://github.com/hamza-rachidi/cli-vehicle-client) to pull the Docker image and run the CLI commands.
+
+#### 5️⃣ Stop the Database Server
+After completing the vehicle management process, stop the PostgreSQL database server with:
+
+```bash
+npm run stop-db
+```
+
+---
+
+### 📝 Notes
+- Ensure Docker is running before starting the database.
+- The CLI client simplifies sending HTTP requests to the server for testing and management purposes.
+
+---
