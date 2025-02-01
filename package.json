@@ -2,8 +2,16 @@
   "name": "vehicle-server",
   "version": "1.0.0",
   "description": "### Requirements",
-  "main": "index.js",
-  "author": "hamza",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "start-db": "docker container run -d --name vehicle-database -e POSTGRES_USER=vehicle -e POSTGRES_PASSWORD=vehicle -e POSTGRES_DB=vehicle -p 5432:5432 postgis/postgis:16-3.4-alpine",
+    "stop-db": "docker container rm -f vehicle-database",
+    "lint": "eslint ./src",
+    "test": "jest"
+  },
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -17,19 +25,11 @@
     "jest": "^29.7.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.2",
     "typescript-eslint": "^8.15.0"
   },
   "dependencies": {
     "express": "^5.0.1",
     "pg": "^8.13.1"
-  },
-  "scripts": {
-    "build": "rm -rf ./dist && tsc",
-    "start": "npm run build && node dist/index.js",
-    "start-db": "docker container run -d --name vehicle-database -e POSTGRES_USER=vehicle -e POSTGRES_PASSWORD=vehicle -e POSTGRES_DB=vehicle -p 5432:5432 postgis/postgis:16-3.4-alpine",
-    "stop-db": "docker container rm -f vehicle-database",
-    "test": "jest",
-    "lint": "npx eslint ./src"
   }
 }

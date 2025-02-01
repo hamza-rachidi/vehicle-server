@@ -55,6 +55,7 @@ export class VehicleStore {
       throw new Error("unexpected amount of rows returned");
     }
 
+     
     const vehicleRow :row = result.rows[0];
 
     return newVehicleFromRow(vehicleRow);

@@ -33,7 +33,7 @@ export function errorHandler(err: Error, req: Request, res: Response, next: Next
       error: {
         code: err.code,
         message: err.message,
-        details: err.details,
+        details: err.details,  
       }
     });
 

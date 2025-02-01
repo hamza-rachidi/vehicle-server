@@ -2,20 +2,19 @@ import { VehicleStore } from '../store/vehicle';
 import { Request, Response } from 'express';
 
 interface Parameters {
- id: string;
+  id: string;
 }
 
 export class DeleteVehicleController {
- constructor(private readonly vehicleStore: VehicleStore) {}
+  constructor(private readonly vehicleStore: VehicleStore) {
+    this.vehicleStore = vehicleStore;
+  }
 
- public async handle(req: Request<Parameters>, res: Response): Promise<void> {
-   const idParam = req.params.id; // Extraire l'identifiant du path
-   // Parser l'identifiant en nombre
-   const id = parseInt(idParam, 10);
-   
-   await this.vehicleStore.deleteVehicle({id : id});
-     
-   res.status(204).send();
-     
- }
+
+  public async handle(req: Request<Parameters>, res: Response): Promise<void> {
+    const idString: string = req.params.id;
+    const id: number = parseInt(idString);
+    await this.vehicleStore.deleteVehicle({id});
+    res.status(200).send({ message: 'success' });
+  }
 }

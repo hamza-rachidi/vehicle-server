@@ -1,6 +1,6 @@
 export interface Position {
-  latitude: number
-  longitude: number
+  longitude: number;
+  latitude: number;
 };
 
 export class Vehicle {
